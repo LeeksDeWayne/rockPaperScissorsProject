@@ -7,19 +7,39 @@
     <body>
         <script>
             //make a prompt playerSelection which is not case sensitive .toLowerCase()
-            
+            const playerSelection = prompt('BEST OF FIVE\nLet\'s play: Rock, Paper or Scissors?').toLowerCase();
             //make an array called computerChoiceArray with choices 'rock', 'paper', and 'scissors'
-
+            const computerChoiceArray = ['rock', 'paper', 'scissors'];
             //make a variable called randomComputerChoice using computerChoiceArray and Math.floor(Math.random()*computerArray.length) to randomly select a word
-
+            let randomComputerChoice = Math.floor(Math.random ()*computerChoiceArray.length);
             //make a function called computerPlay and have it return 'rock', 'paper', or 'scissors' randomly
-            
+            let computerPlay = function (){
             //return computerChoiceArray [randomComputerChoice]
-
+                return computerChoiceArray[randomComputerChoice]
+            }
             //create variable for computerSelection which gets it's value from computerPlay
-
+            let computerSelection = computerPlay
             //make a function called playRound with the parameters playerSelection and computerSelection and it returns with a string that declares the winner
-            
+            let playRound = function (playerSelection, computerSelection){
+                if (computerSelection===playerSelection){
+                    alert ('Oops! Both players chose: '+computerSelection+'\nPlease choose again')
+                    return playRound();
+                }else if (computerSelection==='rock' && playerSelection==='scissors'){
+                    return ['Sorry, you lost this one; rock beats scissors.', 1, 0];
+                }else if (computerSelection==='scissors' && playerSelection==='rock'){
+                    return ['Good job! Rock beats scissors! You won!', 0, 1];
+                }else if (computerSelection==='paper' && playerSelection==='scissors'){
+                    return ['Good job! Scissors beat paper! You won!', 0, 1];
+                }else if (computerSelection==='rock' && playerSelection==='paper'){
+                    return ['Good job! Paper beats rock! You won!', 0, 1];
+                }else if (computerSelection==='scissors' && playerSelection==='paper'){
+                    return ['Sorry, you lost this one; scissors beat paper.', 1, 0];
+                }else if (computerSelection==='paper' && playerSelection==='rock'){
+                    return ['Sorry, you lost this one; paper beats rock.', 1, 0];
+                }else{
+                    return;
+                }
+            }
             //create 5 rounds with rules
 
             //create an array with the text returns and scores
