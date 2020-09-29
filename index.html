@@ -18,13 +18,13 @@
             let gameRound=function(computer=computerPlay(),player=playerPlay()) {
                 
                 if (computer==player){
-                    let roundResult=['Tie', 0, 0, 1];
-                    return roundResult;
-                }else if ((computer == 'rock' && player == 'paper') || (computer == 'paper' && player =='scissors') || (computer == 'scissors' && player== 'rock')){
-                    let roundResult=['Player wins', 1, 0, 0];
+                    alert('Tie! Try Again.');
+                    return gameRound();
+                }else if ((computer == 'rock' && player == 'paper') || (computer == 'paper' && player =='scissors') || (computer == 'scissors' && player == 'rock')){
+                    let roundResult=['Player wins', 1, 0];
                     return roundResult;
                 }else if ((computer == 'paper' && player == 'rock') || (computer == 'scissors' && player == 'paper') || (computer == 'rock' && player == 'scissors')){
-                    let roundResult=['Computer wins', 0, 1, 0];
+                    let roundResult=['Computer wins', 0, 1,];
                     return roundResult;
                 }else{
                     alert('please only choose "rock, paper, or scissors"');
@@ -37,54 +37,47 @@
 
                 let computerScore=0;
                 let playerScore=0;
-                let tie=0;
 
                 let round1=gameRound();
                 alert(round1[0]);
                 console.log(round1[0]);
                 playerScore+=round1[1];
                 computerScore+=round1[2];
-                tie+=round1[3];
 
                 let round2=gameRound();
                 alert(round2[0]);
                 console.log(round2[0]);
                 playerScore+=round2[1];
                 computerScore+=round2[2];
-                tie+=round2[3];
 
                 let round3=gameRound();
                 alert(round3[0]);
                 console.log(round3[0]);
                 playerScore+=round3[1];
                 computerScore+=round3[2];
-                tie+=round3[3];
 
                 let round4=gameRound();
                 alert(round4[0]);
                 console.log(round4[0]);
                 playerScore+=round4[1];
                 computerScore+=round4[2];
-                tie+=round4[3];
 
                 let round5=gameRound();
                 alert(round5[0]);
                 console.log(round5[0]);
                 playerScore+=round5[1];
                 computerScore+=round5[2];
-                tie+=round5[3];
 
-                if (playerScore>>computerScore){
-                    alert('Player wins with a score of: '+playerScore+'.'+'\nComputer loses with a score of: '+computerScore+'.'+'\nYou tied: '+tie+' times.');
+                if (playerScore>>>computerScore){
+                    alert('FINAL SCORE:\n'+'Player wins with a score of: '+playerScore+'.'+'\nComputer loses with a score of: '+computerScore+'.');
                     console.log('Player wins with a score of: '+playerScore+'.');
                     console.log('Computer loses with a score of: '+computerScore+'.');
-                    console.log('There were: '+tie+' ties.');
-                }else if (computerScore>>playerScore){
-                    alert('Computer wins with a score of: '+computerScore+'.'+'\nPlayer loses with a score of: '+playerScore+'.'+'\nYou ties: '+tie+' times.');
+                    game();
+                }else{
+                    alert('FINAL SCORE:\n'+'Computer wins with a score of: '+computerScore+'.'+'\nPlayer loses with a score of: '+playerScore+'.');
                     console.log('Player loses with a score of: '+playerScore);
                     console.log('Computer wins with a score of: '+computerScore);
-                }else{
-                    return;
+                    game();
                 }
             }
             game();
