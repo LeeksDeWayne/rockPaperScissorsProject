@@ -6,51 +6,88 @@
     </head>
     <body>
         <script>
-            //make a prompt playerSelection which is not case sensitive .toLowerCase()
-            const playerSelection = prompt('BEST OF FIVE\nLet\'s play: Rock, Paper or Scissors?').toLowerCase();
-            //make an array called computerChoiceArray with choices 'rock', 'paper', and 'scissors'
-            const computerChoiceArray = ['rock', 'paper', 'scissors'];
-            //make a variable called randomComputerChoice using computerChoiceArray and Math.floor(Math.random()*computerArray.length) to randomly select a word
-            let randomComputerChoice = Math.floor(Math.random ()*computerChoiceArray.length);
-            //make a function called computerPlay and have it return 'rock', 'paper', or 'scissors' randomly
-            let computerPlay = function (){
-            //return computerChoiceArray [randomComputerChoice]
-                return computerChoiceArray[randomComputerChoice]
+            let playerPlay=function(){
+                let playerChoice=prompt('Rock, Paper, or Scissors?').toLowerCase();
+                return playerChoice;
             }
-            //create variable for computerSelection which gets it's value from computerPlay
-            let computerSelection = computerPlay
-            //make a function called playRound with the parameters playerSelection and computerSelection and it returns with a string that declares the winner
-            let playRound = function (playerSelection, computerSelection){
-                if (computerSelection===playerSelection){
-                    alert ('Oops! Both players chose: '+computerSelection+'\nPlease choose again')
-                    return playRound();
-                }else if (computerSelection==='rock' && playerSelection==='scissors'){
-                    return ['Sorry, you lost this one; rock beats scissors.', 1, 0];
-                }else if (computerSelection==='scissors' && playerSelection==='rock'){
-                    return ['Good job! Rock beats scissors! You won!', 0, 1];
-                }else if (computerSelection==='paper' && playerSelection==='scissors'){
-                    return ['Good job! Scissors beat paper! You won!', 0, 1];
-                }else if (computerSelection==='rock' && playerSelection==='paper'){
-                    return ['Good job! Paper beats rock! You won!', 0, 1];
-                }else if (computerSelection==='scissors' && playerSelection==='paper'){
-                    return ['Sorry, you lost this one; scissors beat paper.', 1, 0];
-                }else if (computerSelection==='paper' && playerSelection==='rock'){
-                    return ['Sorry, you lost this one; paper beats rock.', 1, 0];
+            let computerPlay=function(){
+                computerOptions=['rock', 'paper', 'scissors'];
+                computerChoice=Math.floor(Math.random()*computerOptions.length);
+                return computerOptions[computerChoice];
+            }
+            let gameRound=function(computer=computerPlay(),player=playerPlay()) {
+                
+                if (computer==player){
+                    let roundResult=['Tie', 0, 0, 1];
+                    return roundResult;
+                }else if ((computer == 'rock' && player == 'paper') || (computer == 'paper' && player =='scissors') || (computer == 'scissors' && player== 'rock')){
+                    let roundResult=['Player wins', 1, 0, 0];
+                    return roundResult;
+                }else if ((computer == 'paper' && player == 'rock') || (computer == 'scissors' && player == 'paper') || (computer == 'rock' && player == 'scissors')){
+                    let roundResult=['Computer wins', 0, 1, 0];
+                    return roundResult;
+                }else{
+                    alert('please only choose "rock, paper, or scissors"');
+                    return gameRound();
+                }
+            }
+            let game= function(){
+
+                alert('Rock, Paper, Scissors: Best out of five!');
+
+                let computerScore=0;
+                let playerScore=0;
+                let tie=0;
+
+                let round1=gameRound();
+                alert(round1[0]);
+                console.log(round1[0]);
+                playerScore+=round1[1];
+                computerScore+=round1[2];
+                tie+=round1[3];
+
+                let round2=gameRound();
+                alert(round2[0]);
+                console.log(round2[0]);
+                playerScore+=round2[1];
+                computerScore+=round2[2];
+                tie+=round2[3];
+
+                let round3=gameRound();
+                alert(round3[0]);
+                console.log(round3[0]);
+                playerScore+=round3[1];
+                computerScore+=round3[2];
+                tie+=round3[3];
+
+                let round4=gameRound();
+                alert(round4[0]);
+                console.log(round4[0]);
+                playerScore+=round4[1];
+                computerScore+=round4[2];
+                tie+=round4[3];
+
+                let round5=gameRound();
+                alert(round5[0]);
+                console.log(round5[0]);
+                playerScore+=round5[1];
+                computerScore+=round5[2];
+                tie+=round5[3];
+
+                if (playerScore>>computerScore){
+                    alert('Player wins with a score of: '+playerScore+'.'+'\nComputer loses with a score of: '+computerScore+'.'+'\nYou tied: '+tie+' times.');
+                    console.log('Player wins with a score of: '+playerScore+'.');
+                    console.log('Computer loses with a score of: '+computerScore+'.');
+                    console.log('There were: '+tie+' ties.');
+                }else if (computerScore>>playerScore){
+                    alert('Computer wins with a score of: '+computerScore+'.'+'\nPlayer loses with a score of: '+playerScore+'.'+'\nYou ties: '+tie+' times.');
+                    console.log('Player loses with a score of: '+playerScore);
+                    console.log('Computer wins with a score of: '+computerScore);
                 }else{
                     return;
                 }
             }
-            //create 5 rounds with rules
-
-            //create an array with the text returns and scores
-
-            //rules: rock>>scissors; scissors>>paper; paper>>rock
-
-            //make a function called game with the results from playRound
-
-            //score starts at 0 and returns values from arrays are added to score
-
-            //console.log results of games
+            game();
         </script>
     </body>
 </html>
